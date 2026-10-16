@@ -24,6 +24,15 @@ a{color:#F0EEE7;text-decoration:none}
 a:hover{color:#FF704B}
 ::selection{background:#FF704B;color:#0C0D0F}
 @keyframes wbPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.about-grid{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+@media (max-width:760px){
+  .about-grid{grid-template-columns:minmax(0,1fr)}
+  .route-track{grid-template-columns:minmax(0,1fr) !important;gap:20px !important}
+  .route-line{display:none}
+  .route-track::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:repeating-linear-gradient(180deg,#8D9299 0 6px,transparent 6px 11px)}
+  .route-stop{display:grid !important;grid-template-columns:13px minmax(0,1fr);column-gap:16px;row-gap:3px;align-items:center}
+  .route-stop>span:first-child{grid-row:1/3;align-self:start;margin-top:3px;position:relative;z-index:1}
+}
 </style>
 </helmet>
 
@@ -325,7 +334,7 @@ a:hover{color:#FF704B}
         <div style="position:relative">
           <div style="border:1px solid #0C0D0F;background:#0C0D0F;padding:8px 8px 0">
             <div style="display:flex;gap:6px;align-items:center;padding:4px 6px 10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8D9299"><span style="width:8px;height:8px;border-radius:50%;background:#3A3C41"></span><span style="width:8px;height:8px;border-radius:50%;background:#3A3C41"></span><span style="width:8px;height:8px;border-radius:50%;background:#3A3C41"></span><span style="margin-left:10px">maponim.com</span></div>
-            <div style="aspect-ratio:16/10;position:relative;background:#E4E1D8">
+            <div style="aspect-ratio:16/10;position:relative;background:#E4E1D8;min-width:0;overflow:hidden">
               <image-slot id="maponim-shot" shape="rect" src="./resources/maponim2.png" placeholder="Drop a real Maponim screenshot (maponim.com)" style="width:100%;height:100%"></image-slot>
             </div>
           </div>
@@ -412,7 +421,7 @@ a:hover{color:#FF704B}
               <div><strong style="font-weight:600">Ops:</strong> Railway hosting with two Docker images (web, worker) and managed Postgres. Resend for email with delivery webhooks. CI with Vitest, Playwright and npm audit; Dependabot; nightly backups. pino logs and operator pages for sources, costs, duplicates and traces.</div>
             </div>
           </sc-if>
-          <div style="aspect-ratio:1870/1490;border:1px solid #2E3034;position:relative">
+          <div style="aspect-ratio:1870/1490;border:1px solid #2E3034;position:relative;min-width:0;overflow:hidden">
             <image-slot id="jobradar-shot" shape="rect" src="./resources/nextjobradar.png" placeholder="Drop a real Next Job Radar screenshot" style="width:100%;height:100%"></image-slot>
           </div>
         </div>
@@ -525,14 +534,14 @@ a:hover{color:#FF704B}
 <section id="about" data-screen-label="About" style="border-top:1px solid #26282C">
   <div style="max-width:1440px;margin:0 auto;padding:clamp(96px,12vw,168px) clamp(20px,4vw,56px) clamp(80px,10vw,140px)">
     <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#FF704B;margin-bottom:40px">§ 04 — ABOUT</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
-      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;max-width:520px">
-        <div style="aspect-ratio:4/5;position:relative;border:1px solid #26282C">
+    <div class="about-grid" style="display:grid;gap:clamp(32px,5vw,80px);align-items:start">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:12px;max-width:520px;min-width:0">
+        <div style="aspect-ratio:4/5;position:relative;border:1px solid #26282C;min-width:0;overflow:hidden">
           <image-slot id="portrait" shape="rect" src="./resources/Alin.jpg" placeholder="Portrait" style="width:100%;height:100%"></image-slot>
         </div>
         <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#8D9299;display:flex;justify-content:space-between"><span>FIG. 05 — {{ ownerName }}</span></figcaption>
       </figure>
-      <div style="display:flex;flex-direction:column;gap:32px;grid-column:span 2;min-width:0">
+      <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
         <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(34px,3.8vw,60px);line-height:1.04;letter-spacing:-.02em;text-wrap:pretty">I've always been more interested in <span style="font-style:italic">why</span> things break than simply knowing that they do.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px 40px;font-size:17px;line-height:1.6;color:#C9C7C0">
           <p style="margin:0;text-wrap:pretty">That's what drew me deeper into software engineering. From manual testing to automation architecture and designing frameworks, I've spent over nine years learning how complex systems behave, and how to make them more reliable.</p>
@@ -541,13 +550,13 @@ a:hover{color:#FF704B}
 
         <div style="position:relative;padding:28px 0 8px;outline:{{ insOutline }};outline-offset:8px">
           <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299;margin-bottom:22px"><span>Route</span><span>Not to scale</span></div>
-          <div style="position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px">
-            <span style="position:absolute;left:6px;right:6px;top:6px;height:1px;background:repeating-linear-gradient(90deg,#8D9299 0 6px,transparent 6px 11px)"></span>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Curiosity for software</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Origin</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Manual testing</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Way in</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Coding and automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Learned on the job</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Architecture</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Frameworks</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;background:#FF704B"></span><span style="font-size:14px;font-weight:500;color:#FF704B">Building products</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">You are here</span></div>
+          <div class="route-track" style="position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px">
+            <span class="route-line" style="position:absolute;left:6px;right:6px;top:6px;height:1px;background:repeating-linear-gradient(90deg,#8D9299 0 6px,transparent 6px 11px)"></span>
+            <div class="route-stop" style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Curiosity for software</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Origin</span></div>
+            <div class="route-stop" style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Manual testing</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Way in</span></div>
+            <div class="route-stop" style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Coding and automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Learned on the job</span></div>
+            <div class="route-stop" style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Architecture</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Frameworks</span></div>
+            <div class="route-stop" style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;background:#FF704B"></span><span style="font-size:14px;font-weight:500;color:#FF704B">Building products</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">You are here</span></div>
           </div>
           <sc-if value="{{ inspect }}" hint-placeholder-val="{{ false }}">
             <span style="position:absolute;top:-14px;left:0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">Nine years, drawn as a route</span>
