@@ -9,6 +9,9 @@
 <x-dc>
 <helmet>
 <title>The Workbench — Portfolio</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
@@ -68,7 +71,7 @@ a:hover{color:#FF704B}
         </div>
       </sc-if>
       <h1 style="margin:0;font-weight:600;font-size:clamp(56px,11vw,176px);line-height:.88;letter-spacing:-.045em;text-wrap:balance;max-width:14ch">
-        <sc-if value="{{ hv1 }}" hint-placeholder-val="{{ true }}"><span>I know how software <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em;display:inline-block;transition:transform .35s cubic-bezier(.2,.8,.2,1)" style-hover="transform:skewX(-10deg) translateX(.06em)">breaks.</span> I build what <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">comes next.</span></span></sc-if>
+        <sc-if value="{{ hv1 }}" hint-placeholder-val="{{ true }}"><span>I know how software <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em;display:inline-block;transition:transform .35s cubic-bezier(.2,.8,.2,1)" style-hover="transform:skewX(-10deg) translateX(.06em)">breaks.</span> I engineer ways to <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">prevent it.</span></span></sc-if>
         <sc-if value="{{ hv2 }}" hint-placeholder-val="{{ false }}"><span>Build it. <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em">Break it.</span> Make it <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">better.</span></span></sc-if>
         <sc-if value="{{ hv3 }}" hint-placeholder-val="{{ false }}"><span>Engineering <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em">reliability.</span> Building <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">possibility.</span></span></sc-if>
       </h1>
@@ -117,7 +120,7 @@ a:hover{color:#FF704B}
     <nav aria-label="Selected work index" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid #26282C">
       <a href="#w-ffice" style="padding:20px 20px 28px 0;border-bottom:1px solid #26282C;display:flex;flex-direction:column;gap:10px" style-hover="color:#FF704B">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;color:#8D9299">01 · PROFESSIONAL</span>
-        <span style="font-size:19px;font-weight:500;letter-spacing:-.01em">FF-ICE test framework</span>
+        <span style="font-size:19px;font-weight:500;letter-spacing:-.01em">EUROCONTROL iNM test framework</span>
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299">Indra Avitech</span>
       </a>
       <a href="#w-pwc" style="padding:20px 20px 28px 0;border-bottom:1px solid #26282C;display:flex;flex-direction:column;gap:10px" style-hover="color:#FF704B">
@@ -323,7 +326,7 @@ a:hover{color:#FF704B}
           <div style="border:1px solid #0C0D0F;background:#0C0D0F;padding:8px 8px 0">
             <div style="display:flex;gap:6px;align-items:center;padding:4px 6px 10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8D9299"><span style="width:8px;height:8px;border-radius:50%;background:#3A3C41"></span><span style="width:8px;height:8px;border-radius:50%;background:#3A3C41"></span><span style="width:8px;height:8px;border-radius:50%;background:#3A3C41"></span><span style="margin-left:10px">maponim.com</span></div>
             <div style="aspect-ratio:16/10;position:relative;background:#E4E1D8">
-              <image-slot id="maponim-shot" shape="rect" placeholder="Drop a real Maponim screenshot (maponim.com)" style="width:100%;height:100%"></image-slot>
+              <image-slot id="maponim-shot" shape="rect" src="./resources/maponim2.png" placeholder="Drop a real Maponim screenshot (maponim.com)" style="width:100%;height:100%"></image-slot>
             </div>
           </div>
           <sc-if value="{{ mpOn }}" hint-placeholder-val="{{ false }}">
@@ -343,7 +346,10 @@ a:hover{color:#FF704B}
               <div>Problem spotted, product conceived, designed and built solo with AI-assisted development tools.</div>
               <div>Grounding is a product rule, not a prompt: generated copy must be backed by source data.</div>
               <div>English and Spanish today. Free, Pro and Agency plans; custom domains on paid tiers.</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5E6268">[Add your stack and key build decisions here]</div>
+              <div><strong style="font-weight:600">Stack:</strong> Next.js 15 (App Router) in TypeScript, React 19, Tailwind CSS 4. Supabase for database and auth; Upstash Redis for rate limiting.</div>
+              <div><strong style="font-weight:600">AI and data:</strong> Anthropic SDK behind an LLM provider abstraction, plus a Google Places API abstraction for business lookup.</div>
+              <div><strong style="font-weight:600">Payments and hosting:</strong> Stripe for billing; Vercel with Analytics and Speed Insights.</div>
+              <div><strong style="font-weight:600">Tooling:</strong> Zod for validation, Vitest for tests, ESLint, lucide-react for icons.</div>
             </div>
           </sc-if>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
@@ -399,11 +405,15 @@ a:hover{color:#FF704B}
               <div>Hard rules first, ranking second: eligibility checks return pass, fail or unknown before any fit is assessed.</div>
               <div>Feedback improves ranking without rewriting a candidate's hard rules.</div>
               <div>Delivered as a daily email digest and a small dashboard. Users apply on the employer's original listing.</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299">[Add your stack and matching approach here]</div>
+              <div><strong style="font-weight:600">Stack:</strong> TypeScript end to end on Node 22, in an npm workspaces monorepo. Next.js 16 (App Router), React 19, Tailwind CSS 4, shadcn/ui on Radix. PostgreSQL 18 with Drizzle ORM and SQL migrations; magic-link auth via better-auth.</div>
+              <div><strong style="font-weight:600">Background work:</strong> a Node worker on pg-boss, a Postgres-backed job queue, polls sources, runs matching and sends digests and alerts on a schedule.</div>
+              <div><strong style="font-weight:600">AI:</strong> Anthropic SDK with structured outputs and Zod schemas. Haiku 5.5 for job extraction and fit evaluation, Opus 5.5 for onboarding drafts. Prompt caching on the system prompt and candidate block, a per-call cost ledger and a daily budget cap.</div>
+              <div><strong style="font-weight:600">Sources:</strong> public feeds from Greenhouse, Lever, Ashby, SmartRecruiters, Recruitee, Workable and Personio, careers pages with JobPosting markup, and four aggregator feeds. No LinkedIn or Indeed.</div>
+              <div><strong style="font-weight:600">Ops:</strong> Railway hosting with two Docker images (web, worker) and managed Postgres. Resend for email with delivery webhooks. CI with Vitest, Playwright and npm audit; Dependabot; nightly backups. pino logs and operator pages for sources, costs, duplicates and traces.</div>
             </div>
           </sc-if>
-          <div style="aspect-ratio:16/9;border:1px solid #2E3034;position:relative">
-            <image-slot id="jobradar-shot" shape="rect" placeholder="Drop a real Next Job Radar screenshot" style="width:100%;height:100%"></image-slot>
+          <div style="aspect-ratio:1870/1490;border:1px solid #2E3034;position:relative">
+            <image-slot id="jobradar-shot" shape="rect" src="./resources/nextjobradar.png" placeholder="Drop a real Next Job Radar screenshot" style="width:100%;height:100%"></image-slot>
           </div>
         </div>
       </div>
@@ -518,14 +528,14 @@ a:hover{color:#FF704B}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
       <figure style="margin:0;display:flex;flex-direction:column;gap:12px;max-width:520px">
         <div style="aspect-ratio:4/5;position:relative;border:1px solid #26282C">
-          <image-slot id="portrait" shape="rect" placeholder="Portrait" style="width:100%;height:100%"></image-slot>
+          <image-slot id="portrait" shape="rect" src="./resources/Alin.jpg" placeholder="Portrait" style="width:100%;height:100%"></image-slot>
         </div>
-        <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#8D9299;display:flex;justify-content:space-between"><span>FIG. 05 — {{ ownerName }}</span><span>[City]</span></figcaption>
+        <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#8D9299;display:flex;justify-content:space-between"><span>FIG. 05 — {{ ownerName }}</span></figcaption>
       </figure>
       <div style="display:flex;flex-direction:column;gap:32px;grid-column:span 2;min-width:0">
-        <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(34px,3.8vw,60px);line-height:1.04;letter-spacing:-.02em;text-wrap:pretty">I studied <span style="font-style:italic">Geography</span>, came into software through manual testing, and taught myself the rest.</p>
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(34px,3.8vw,60px);line-height:1.04;letter-spacing:-.02em;text-wrap:pretty">I've always been more interested in <span style="font-style:italic">why</span> things break than simply knowing that they do.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px 40px;font-size:17px;line-height:1.6;color:#C9C7C0">
-          <p style="margin:0;text-wrap:pretty">Over nine years I moved from manual testing to automation architecture, framework development and test strategy, on systems where failures are expensive: aviation, enterprise platforms, fintech.</p>
+          <p style="margin:0;text-wrap:pretty">That's what drew me deeper into software engineering. From manual testing to automation architecture and designing frameworks, I've spent over nine years learning how complex systems behave, and how to make them more reliable.</p>
           <p style="margin:0;text-wrap:pretty">I like solving problems and understanding how systems actually work. Lately that curiosity goes into building my own products, using AI-assisted tools to get from an idea to something people can use.</p>
         </div>
 
@@ -533,14 +543,14 @@ a:hover{color:#FF704B}
           <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299;margin-bottom:22px"><span>Route</span><span>Not to scale</span></div>
           <div style="position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px">
             <span style="position:absolute;left:6px;right:6px;top:6px;height:1px;background:repeating-linear-gradient(90deg,#8D9299 0 6px,transparent 6px 11px)"></span>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Geography</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Origin</span></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Curiosity for software</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Origin</span></div>
             <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#0C0D0F"></span><span style="font-size:14px;font-weight:500">Manual testing</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Way in</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Self-taught</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Frameworks</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Architecture</span></div>
-            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;background:#FF704B"></span><span style="font-size:14px;font-weight:500;color:#FF704B">Products</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">You are here</span></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Coding and automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Learned on the job</span></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;border:1px solid #F0EEE7;background:#F0EEE7"></span><span style="font-size:14px;font-weight:500">Architecture</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">Frameworks</span></div>
+            <div style="position:relative;display:flex;flex-direction:column;gap:12px"><span style="width:13px;height:13px;border-radius:50%;background:#FF704B"></span><span style="font-size:14px;font-weight:500;color:#FF704B">Building products</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8D9299">You are here</span></div>
           </div>
           <sc-if value="{{ inspect }}" hint-placeholder-val="{{ false }}">
-            <span style="position:absolute;top:-14px;left:0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">A geographer's timeline: drawn as a route</span>
+            <span style="position:absolute;top:-14px;left:0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">Nine years, drawn as a route</span>
           </sc-if>
         </div>
       </div>
@@ -553,19 +563,22 @@ a:hover{color:#FF704B}
       </div>
       <div style="display:flex;flex-direction:column">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 24px;padding:22px 0;border-bottom:1px solid #26282C;align-items:baseline">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">20XX — Present</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">PwC</span><span style="font-size:15.5px">Quality Engineering, Test Automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Enterprise · Content governance</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">2026 — Present</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">PwC</span><span style="font-size:15.5px">Senior QA Engineer / AI Agentic QA Engineer</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Enterprise · Content governance</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 24px;padding:22px 0;border-bottom:1px solid #26282C;align-items:baseline">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">20XX — 20XX</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Indra Avitech</span><span style="font-size:15.5px">Senior QA Automation, Framework Engineering</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Aviation · EUROCONTROL iNM, FF-ICE</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">2023 — 2026</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Indra Avitech</span><span style="font-size:15.5px">Senior Test Automation Engineer</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Aviation · EUROCONTROL iNM, FF-ICE</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 24px;padding:22px 0;border-bottom:1px solid #26282C;align-items:baseline">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">20XX — 20XX</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Moonfare</span><span style="font-size:15.5px;color:#8D9299">[Role title]</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Fintech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">2021 — 2023</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Moonfare</span><span style="font-size:15.5px">SDET / Full-stack Software Developer</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Fintech</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 24px;padding:22px 0;border-bottom:1px solid #26282C;align-items:baseline">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">20XX — 20XX</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Billie</span><span style="font-size:15.5px;color:#8D9299">[Role title]</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Fintech</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">2018 — 2021</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Billie</span><span style="font-size:15.5px">QA Engineer / Test Automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Fintech</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 24px;padding:22px 0;border-bottom:1px solid #26282C;align-items:baseline">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">20XX — 20XX</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em;color:#8D9299">Earlier roles</span><span style="font-size:15.5px">Manual software testing</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Where it started</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">2017 — 2018</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Ubisoft</span><span style="font-size:15.5px">QA Engineer</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Gaming</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 24px;padding:22px 0;border-bottom:1px solid #26282C;align-items:baseline">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">2014 — 2017</span><span style="font-size:22px;font-weight:600;letter-spacing:-.02em">Teamnet / Nutre Group / CenterPoint Energy</span><span style="font-size:15.5px">GIS Specialist</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D9299">Geospatial · Where it started</span>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:28px;margin-top:48px">
@@ -587,21 +600,21 @@ a:hover{color:#FF704B}
         <h2 style="margin:0;font-weight:600;font-size:clamp(48px,7vw,112px);line-height:.9;letter-spacing:-.045em;text-wrap:balance">Got something worth building? <span style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;color:#FF704B;letter-spacing:-.02em">Open an issue.</span></h2>
         <p style="margin:0;font-size:19px;line-height:1.5;color:#C9C7C0;max-width:40ch">Recruiters, engineering leads, founders and fellow engineers are all welcome. I read every message myself.</p>
         <div style="display:flex;flex-direction:column;border-top:1px solid #26282C">
-          <a href="mailto:hello@yourname.dev" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">hello@yourname.dev <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">EMAIL</span></a>
-          <a href="#contact" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">LinkedIn ↗ <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">PROFILE</span></a>
-          <a href="#contact" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">GitHub ↗ <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">CODE</span></a>
+          <a href="mailto:alin.nitu1@gmail.com" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">alin.nitu1@gmail.com <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">EMAIL</span></a>
+          <a href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">LinkedIn ↗ <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">PROFILE</span></a>
+          <a href="https://github.com/AlinNitu" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">GitHub ↗ <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">CODE</span></a>
           <a href="#cv" style="display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #26282C;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-.01em" style-hover="color:#FF704B">Curriculum vitae ↓ <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8D9299;align-self:center">PDF</span></a>
         </div>
       </div>
 
       <div style="position:relative;border:1px solid #2E3034;background:#0C0D0F">
         <sc-if value="{{ inspect }}" hint-placeholder-val="{{ false }}">
-          <span style="position:absolute;top:-30px;right:0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">Prototype form · wire to email service</span>
+          <span style="position:absolute;top:-30px;right:0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">Form · posts to Web3Forms</span>
         </sc-if>
         <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid #2E3034;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299"><span>New issue · #001</span><span style="color:#F0EEE7">Status: Open</span></div>
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
           <div style="padding:24px 20px;display:flex;flex-direction:column;gap:22px">
-            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Title</span><input placeholder="e.g. Senior QA automation role, Berlin" style="background:transparent;border:none;border-bottom:1px solid #3A3C41;color:#F0EEE7;font:500 19px 'Instrument Sans',sans-serif;padding:8px 0;outline:none" style-focus="border-bottom-color:#FF704B"></label>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Title</span><input value="{{ title }}" onChange="{{ setTitle }}" placeholder="e.g. Senior QA automation role, Berlin" style="background:transparent;border:none;border-bottom:1px solid #3A3C41;color:#F0EEE7;font:500 19px 'Instrument Sans',sans-serif;padding:8px 0;outline:none" style-focus="border-bottom-color:#FF704B"></label>
             <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Reporter</span>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
                 <sc-for list="{{ reporters }}" as="r" hint-placeholder-count="4">
@@ -616,9 +629,14 @@ a:hover{color:#FF704B}
                 </sc-for>
               </div>
             </div>
-            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Description</span><textarea rows="4" placeholder="What are you working on, and where could I help?" style="background:transparent;border:1px solid #3A3C41;color:#F0EEE7;font:400 16px/1.5 'Instrument Sans',sans-serif;padding:12px;resize:vertical;outline:none" style-focus="border-color:#FF704B"></textarea></label>
-            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Reply to</span><input type="email" placeholder="you@company.com" style="background:transparent;border:none;border-bottom:1px solid #3A3C41;color:#F0EEE7;font:400 17px 'Instrument Sans',sans-serif;padding:8px 0;outline:none" style-focus="border-bottom-color:#FF704B"></label>
-            <button onClick="{{ send }}" style="align-self:flex-start;background:#FF704B;color:#0C0D0F;border:none;padding:15px 22px;font:600 15px 'Instrument Sans',sans-serif;cursor:pointer" style-hover="background:#F0EEE7">Submit issue →</button>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Description</span><textarea value="{{ description }}" onChange="{{ setDescription }}" rows="4" placeholder="What are you working on, and where could I help?" style="background:transparent;border:1px solid #3A3C41;color:#F0EEE7;font:400 16px/1.5 'Instrument Sans',sans-serif;padding:12px;resize:vertical;outline:none" style-focus="border-color:#FF704B"></textarea></label>
+            <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">Reply to</span><input type="email" value="{{ email }}" onChange="{{ setEmail }}" placeholder="you@company.com" style="background:transparent;border:none;border-bottom:1px solid #3A3C41;color:#F0EEE7;font:400 17px 'Instrument Sans',sans-serif;padding:8px 0;outline:none" style-focus="border-bottom-color:#FF704B"></label>
+            <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+              <button onClick="{{ send }}" disabled="{{ sending }}" style="align-self:flex-start;background:#FF704B;color:#0C0D0F;border:none;padding:15px 22px;font:600 15px 'Instrument Sans',sans-serif;cursor:pointer;opacity:{{ sendOpacity }}" style-hover="background:#F0EEE7">{{ sendLabel }}</button>
+              <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+                <span role="alert" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FF704B">{{ error }}</span>
+              </sc-if>
+            </div>
           </div>
         </sc-if>
         <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
@@ -636,9 +654,8 @@ a:hover{color:#FF704B}
 </main>
 
 <footer style="border-top:1px solid #26282C;overflow:hidden">
-  <div style="max-width:1440px;margin:0 auto;padding:40px clamp(20px,4vw,56px) 28px">
-    <div style="font-family:'Instrument Serif',serif;font-size:clamp(64px,15vw,240px);line-height:.85;letter-spacing:-.04em;white-space:nowrap">{{ ownerName }}<span style="color:#FF704B">.</span></div>
-    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;padding-top:16px;border-top:1px solid #26282C;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8D9299">
+  <div style="max-width:1440px;margin:0 auto;padding:28px clamp(20px,4vw,56px)">
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8D9299">
       <span>© 2026 · Designed, built &amp; tested by {{ ownerName }}</span>
       <button onClick="{{ toggleInspect }}" style="background:none;border:none;color:#F0EEE7;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0;cursor:pointer" style-hover="color:#FF704B">Press I to inspect this page</button>
       <span>Set in Instrument Sans, Instrument Serif &amp; IBM Plex Mono</span>
@@ -654,7 +671,7 @@ a:hover{color:#FF704B}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;ownerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Alin Nitu&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Identity&quot;},&quot;headline&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;breaks&quot;,&quot;build&quot;,&quot;reliability&quot;],&quot;default&quot;:&quot;breaks&quot;,&quot;tsType&quot;:&quot;'breaks'|'build'|'reliability'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;inspectOnLoad&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interactions&quot;}}">
 class Component extends DCLogic {
-  state = { inspect: false, local: {}, step: 0, reporter: 'Recruiter', priority: 'Soon', sent: false };
+  state = { inspect: false, local: {}, step: 0, reporter: 'Recruiter', priority: 'Soon', title: '', description: '', email: '', sending: false, error: '', sent: false };
   timers = [];
   componentDidMount() {
     if (this.props.inspectOnLoad) this.setState({ inspect: true });
@@ -676,6 +693,41 @@ class Component extends DCLogic {
     this.timers = [1, 2, 3, 4].map(n => setTimeout(() => this.setState({ step: n }), 300 + n * 480));
   };
   toggleCase = k => this.setState(s => ({ local: { ...s.local, [k]: !s.local[k] } }));
+  // Contact form → Web3Forms (https://web3forms.com). Get a free access key by
+  // entering the destination email on their site, then paste it here.
+  WEB3FORMS_ACCESS_KEY = '6dd8d9cc-0bea-4bed-8abc-8c44d34db79d';
+  send = async () => {
+    const { title, description, email, reporter, priority, sending } = this.state;
+    if (sending) return;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    if (!description.trim()) return this.setState({ error: 'Add a short description first.' });
+    if (!emailOk) return this.setState({ error: 'Add a valid reply-to email.' });
+    if (!this.WEB3FORMS_ACCESS_KEY || this.WEB3FORMS_ACCESS_KEY.startsWith('YOUR_')) {
+      return this.setState({ error: 'Form not configured yet. Please use the email link above.' });
+    }
+    this.setState({ sending: true, error: '' });
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: this.WEB3FORMS_ACCESS_KEY,
+          subject: `[Workbench] ${title.trim() || 'New issue'} · ${reporter} · ${priority}`,
+          from_name: 'The Workbench contact form',
+          email: email.trim(),
+          title: title.trim(),
+          reporter, priority,
+          message: description.trim()
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) throw new Error(data.message || `Request failed (${res.status})`);
+      this.setState({ sending: false, sent: true });
+    } catch (err) {
+      this.setState({ sending: false, error: 'Could not send. Please try again or use the email link above.' });
+      console.error('Contact form error:', err);
+    }
+  };
   chips(list, key) {
     return list.map(label => {
       const on = this.state[key] === label;
@@ -711,8 +763,16 @@ class Component extends DCLogic {
       priorities: this.chips(['Whenever', 'Soon', "We're hiring"], 'priority'),
       reporter: this.state.reporter, priority: this.state.priority,
       sent: this.state.sent, notSent: !this.state.sent,
-      send: () => this.setState({ sent: true }),
-      reset: () => this.setState({ sent: false })
+      title: this.state.title, description: this.state.description, email: this.state.email,
+      setTitle: e => this.setState({ title: e.target.value, error: '' }),
+      setDescription: e => this.setState({ description: e.target.value, error: '' }),
+      setEmail: e => this.setState({ email: e.target.value, error: '' }),
+      sending: this.state.sending,
+      sendLabel: this.state.sending ? 'Sending…' : 'Submit issue →',
+      sendOpacity: this.state.sending ? .6 : 1,
+      error: this.state.error, hasError: !!this.state.error,
+      send: this.send,
+      reset: () => this.setState({ sent: false, title: '', description: '', email: '', error: '' })
     };
   }
 }
