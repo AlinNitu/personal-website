@@ -72,14 +72,14 @@ a:hover{color:#FF704B}
       <div>Status<br><span style="color:#F0EEE7;display:inline-flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#FF704B"></span>Open to new roles</span></div>
     </div>
 
-    <div style="position:relative;padding:clamp(56px,9vw,128px) 0 clamp(40px,6vw,72px);outline:{{ insOutline }};outline-offset:-1px">
+    <div style="position:relative;padding:clamp(28px,4.5vw,64px) 0 clamp(40px,6vw,72px);outline:{{ insOutline }};outline-offset:-1px">
       <sc-if value="{{ inspect }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:16px;left:0;display:flex;gap:8px;flex-wrap:wrap">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">h1 · Instrument Sans 600 + Instrument Serif italic</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#FF704B;border:1px solid #FF704B;padding:2px 7px;text-transform:uppercase">clamp(56px → 176px) · tracking −0.045em</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#FF704B;border:1px solid #FF704B;padding:2px 7px;text-transform:uppercase">clamp(44px → 120px) · tracking −0.04em</span>
         </div>
       </sc-if>
-      <h1 style="margin:0;font-weight:600;font-size:clamp(56px,11vw,176px);line-height:.88;letter-spacing:-.045em;text-wrap:balance;max-width:14ch">
+      <h1 style="margin:0;font-weight:600;font-size:clamp(44px,7.5vw,120px);line-height:.92;letter-spacing:-.04em;text-wrap:balance;max-width:14ch">
         <sc-if value="{{ hv1 }}" hint-placeholder-val="{{ true }}"><span>I know how software <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em;display:inline-block;transition:transform .35s cubic-bezier(.2,.8,.2,1)" style-hover="transform:skewX(-10deg) translateX(.06em)">breaks.</span> I engineer ways to <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">prevent it.</span></span></sc-if>
         <sc-if value="{{ hv2 }}" hint-placeholder-val="{{ false }}"><span>Build it. <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em">Break it.</span> Make it <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">better.</span></span></sc-if>
         <sc-if value="{{ hv3 }}" hint-placeholder-val="{{ false }}"><span>Engineering <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#FF704B;letter-spacing:-.02em">reliability.</span> Building <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em">possibility.</span></span></sc-if>
@@ -492,22 +492,22 @@ a:hover{color:#FF704B}
         <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#FF704B">§ 03</span>
         <h2 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(56px,8vw,128px);line-height:.9;letter-spacing:-.025em">Field <span style="font-style:italic">Notes</span></h2>
       </div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299;text-align:right;line-height:1.7">Writing on quality, automation<br>&amp; building things alone</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299;text-align:right;line-height:1.7">Articles on quality, automation<br>&amp; building things</div>
     </div>
     <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #26282C;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#8D9299">
-      <span>Issue 00 · In preparation</span><span style="color:#F0EEE7">Nothing published yet. These are the first pieces in draft.</span>
+      <span>Issue 01 · October 2026</span><span style="color:#F0EEE7">First article published. Two more in draft.</span>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(32px,5vw,80px);padding-top:clamp(40px,5vw,64px);position:relative">
       <sc-if value="{{ inspect }}" hint-placeholder-val="{{ false }}">
         <span style="position:absolute;top:12px;right:0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#0C0D0F;background:#FF704B;padding:3px 7px;text-transform:uppercase">Lead story + index · serif titles, mono metadata</span>
       </sc-if>
-      <a href="#notes" style="display:flex;flex-direction:column;gap:24px;color:#F0EEE7" style-hover="color:#F0EEE7">
-        <div style="display:flex;gap:16px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase"><span style="color:#FF704B">N° 01</span><span style="color:#8D9299">Quality engineering</span><span style="color:#8D9299">· Draft</span></div>
-        <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,88px);line-height:.95;letter-spacing:-.025em;text-wrap:balance">Building a test automation framework <span style="font-style:italic;color:#FF704B">from scratch</span></h3>
-        <p style="margin:0;font-size:19px;line-height:1.55;color:#C9C7C0;max-width:44ch;text-wrap:pretty">What to decide on day one, what can wait, and what I would do differently next time.</p>
-        <div style="aspect-ratio:21/9;position:relative;border:1px solid #26282C">
-          <image-slot id="note-lead" shape="rect" placeholder="Lead illustration or diagram" style="width:100%;height:100%"></image-slot>
+      <a href="/articles/no-correlation-id" style="display:flex;flex-direction:column;gap:24px;color:#F0EEE7" style-hover="color:#F0EEE7">
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase"><span style="color:#FF704B">N° 01</span><span style="color:#8D9299">Quality engineering</span><span style="color:#8D9299">· Published 17 Oct 2026</span><span style="color:#8D9299">· 10 min</span></div>
+        <h3 style="margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4.2vw,64px);line-height:1;letter-spacing:-.025em;text-wrap:balance">Testing a system that will not tell you which output belongs to <span style="font-style:italic;color:#FF704B">your input.</span></h3>
+        <p style="margin:0;font-size:19px;line-height:1.55;color:#C9C7C0;max-width:44ch;text-wrap:pretty">The response has no correlation ID. A field note on a Python test framework for an AMQP service, and the broker investigation that explained why tests passed alone but failed together.</p>
+        <div style="aspect-ratio:1800/825;position:relative;border:1px solid #26282C;min-width:0;overflow:hidden">
+          <image-slot id="note-lead" shape="rect" src="./resources/articles/one-receiver-per-queue.png" placeholder="Lead illustration or diagram" style="width:100%;height:100%"></image-slot>
         </div>
       </a>
       <div style="display:flex;flex-direction:column">
