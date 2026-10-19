@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is software quality getting worse, or am I just a biased QA engineer? | Alin Nitu</title>
+<meta name="description" content="Three everyday bugs. A few unnecessary heart attacks. And some uncomfortable questions about how we&#x27;re building software in the age of AI.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Is software quality getting worse, or am I just a biased QA engineer?">
+<meta property="og:description" content="Three everyday bugs. A few unnecessary heart attacks. And some uncomfortable questions about how we&#x27;re building software in the age of AI.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0C0D0F;--ink:#F0EEE7;--body:#C9C7C0;--muted:#8D9299;--rule:#26282C;--rule2:#2E3034;--accent:#FF704B;--paper:#F0EEE7;--code:#0F1012}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--bg)}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+
+header.site{position:sticky;top:0;z-index:50;background:rgba(12,13,15,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1E2023}
+header.site .in{max-width:1440px;margin:0 auto;padding:14px clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.brand .mark{width:26px;height:26px;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500}
+.brand:hover{color:var(--accent)}
+.back{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.back:hover{color:var(--accent)}
+
+.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.head{padding:clamp(56px,8vw,112px) 0 clamp(40px,5vw,64px);border-bottom:1px solid var(--rule)}
+.kicker{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.kicker .no{color:var(--accent)}
+h1{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(38px,5.4vw,84px);line-height:1;letter-spacing:-.025em;text-wrap:balance;max-width:20ch}
+h1 em{font-style:italic;color:var(--accent)}
+.dek{margin:28px 0 0;font-size:clamp(19px,1.6vw,24px);line-height:1.45;color:var(--body);max-width:56ch;text-wrap:pretty}
+.meta{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:36px}
+.meta span b{color:var(--ink);font-weight:500}
+.ai-note{margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;letter-spacing:.02em;color:var(--muted);max-width:60ch}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(32px,5vw,80px);padding:clamp(40px,5vw,64px) 0 clamp(80px,10vw,140px)}
+@media (min-width:1000px){.layout{grid-template-columns:220px minmax(0,1fr)}}
+aside.toc{position:sticky;top:84px;align-self:start;display:none}
+@media (min-width:1000px){aside.toc{display:block}}
+aside.toc .mono{margin-bottom:14px}
+aside.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;border-left:1px solid var(--rule);padding-left:16px}
+aside.toc a{font-size:13.5px;color:var(--muted);line-height:1.4;display:block}
+aside.toc a:hover{color:var(--ink)}
+
+article{max-width:68ch;font-size:18px;line-height:1.65;color:var(--body)}
+article p{margin:0 0 1.35em;text-wrap:pretty}
+article h2{margin:2.4em 0 .7em;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,2.6vw,38px);line-height:1.1;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+article h2:first-child{margin-top:0}
+article h3{margin:2em 0 .6em;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+article h3 .n{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:12px;color:var(--accent);margin-right:12px}
+article strong{color:var(--ink);font-weight:600}
+article a{color:var(--ink);border-bottom:1px solid var(--rule2)}
+article a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+pre{margin:1.6em 0 1.8em;padding:18px 20px;background:var(--code);border:1px solid var(--rule2);border-left:2px solid var(--accent);overflow-x:auto;font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.7;color:var(--ink)}
+pre code{font:inherit}
+pre .c{color:var(--muted)}
+pre .k{color:var(--accent)}
+
+figure{margin:2.2em 0}
+figure .panel{background:var(--paper);padding:clamp(14px,2vw,24px);border:1px solid var(--rule)}
+figure img{display:block;width:100%;height:auto}
+figcaption{margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;color:var(--muted)}
+
+.closer{margin:3em 0 0;padding-top:2em;border-top:1px solid var(--rule);font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,32px);line-height:1.25;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty}
+.closer em{font-style:italic;color:var(--accent)}
+.note{margin-top:2.5em;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;color:var(--muted)}
+
+.end{border-top:1px solid var(--rule);padding:clamp(40px,5vw,64px) 0}
+.end .in{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px 48px;align-items:start}
+.end .author{display:flex;gap:16px;align-items:center}
+.end .author img{width:56px;height:56px;object-fit:cover;border:1px solid var(--rule2)}
+.end .author .who{font-size:15px;line-height:1.45;color:var(--body)}
+.end .author .who b{display:block;color:var(--ink);font-weight:600}
+.end .links{display:flex;flex-direction:column}
+.end .links a{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:16px;font-weight:500}
+.end .links a:first-child{border-top:1px solid var(--rule)}
+.end .links a:hover{color:var(--accent)}
+.end .links a span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);align-self:center}
+
+footer.site{border-top:1px solid var(--rule)}
+footer.site .in{max-width:1440px;margin:0 auto;padding:28px clamp(20px,4vw,56px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+article h2 .n{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);margin-right:14px;vertical-align:.35em}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="in">
+    <a class="brand" href="/"><span class="mark">AN</span>Alin Nitu</a>
+    <a class="back" href="/#notes">← Field Notes</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <div class="kicker mono"><span class="no">N° 02</span><span>Quality engineering</span><span>·</span><span>Software quality</span><span>·</span><span>AI &amp; engineering</span></div>
+    <h1>Is software quality getting worse, or am I just <em>a biased QA engineer?</em></h1>
+    <p class="dek">Three everyday bugs. A few unnecessary heart attacks. And some uncomfortable questions about how we’re building software in the age of AI.</p>
+    <div class="meta mono"><span>By <b>Alin Nitu</b></span><span>Published <b>19 Oct 2026</b></span><span>Reading time <b>3 min</b></span></div>
+  </div>
+
+  <div class="layout">
+    <aside class="toc">
+      <div class="mono">Three bugs</div>
+      <ol>
+        <li><a href="#job-application">The job application that punished me for making a mistake</a></li>
+        <li><a href="#airline">The airline that checked me in but forgot to tell me</a></li>
+        <li><a href="#financial-app">The financial app that briefly convinced me I’d lost everything</a></li>
+      </ol>
+    </aside>
+
+    <article>
+      <p>I’m starting to get genuinely concerned about the direction we’re heading in software development.</p>
+      <p>We’re generating more code than ever with LLMs, shipping features faster, and simultaneously watching companies reduce their QA teams.</p>
+      <p>Nothing inherently wrong with faster development or AI-assisted coding. I’m a big fan of both.</p>
+      <p>But I can’t help wondering: are we putting the same effort into verifying all this code as we are into producing it?</p>
+      <p>Over the past few months, I’ve encountered quite a few bugs as an ordinary user. Three examples come to mind.</p>
+      <h2 id="job-application"><span class="n">01</span>The job application that punished me for making a mistake</h2>
+      <p>I’m currently applying for jobs. Recently, I spent a good amount of time filling out an application, only to discover that I had missed a required field: expected salary.</p>
+      <p>No big deal, right?</p>
+      <p>Well, apparently, the application took that personally.</p>
+      <p>Instead of politely highlighting the missing field and letting me continue, it wiped out everything I’d entered and greeted me with a massive red error message.</p>
+      <p>Thanks. Very helpful. Exactly the kind of encouragement you need when job hunting.</p>
+      <p>This is the sort of issue I’d expect to catch within the first few minutes of negative testing.</p>
+      <h2 id="airline"><span class="n">02</span>The airline that checked me in but forgot to tell me</h2>
+      <p>A while ago, I was flying with one of those airlines where forgetting to check in online can cost you a small fortune.</p>
+      <p>A few hours before departure, I tried checking in through their mobile app.</p>
+      <p>Server error. Timeout. Retry. Another error.</p>
+      <p>Eventually, I tried the classic IT solution: close the app and open it again.</p>
+      <p>Surprise! I was already checked in.</p>
+      <p>Apparently, the operation had succeeded, but the app never bothered to tell me.</p>
+      <p>As someone with a technical background, I could figure it out. But imagine a less technical passenger, a couple of hours before their flight, wondering whether they’ll be allowed to board.</p>
+      <h2 id="financial-app"><span class="n">03</span>The financial app that briefly convinced me I’d lost everything</h2>
+      <p>One morning, I opened a popular financial app to check my crypto portfolio.</p>
+      <p>Total balance: $0.</p>
+      <p>Flat graph. Nothing.</p>
+      <p>Not exactly the kind of adrenaline I was looking for before my morning coffee.</p>
+      <p>After a moment of panic, I navigated into my actual holdings and discovered that everything was still there. The portfolio overview was simply displaying incorrect information.</p>
+      <p>They fixed it later that day.</p>
+      <p>Unfortunately, I encountered similar behavior a few more times afterward.</p>
+      <p>Thankfully, it appeared to be a display issue rather than an actual loss of funds.</p>
+      <hr style="border:0;border-top:1px solid var(--rule);margin:2.6em 0 2.2em">
+      <p>None of these bugs caused serious damage. Mostly wasted time, unnecessary stress, and a little loss of trust.</p>
+      <p>But that’s precisely what worries me.</p>
+      <p>What happens when the next bug isn’t just an annoying form, a misleading confirmation, or an incorrect balance?</p>
+      <p>What happens when it affects millions of users, real financial transactions, or critical infrastructure?</p>
+      <p>I’m not blaming AI. And I don’t believe having a QA engineer on every team magically prevents bugs.</p>
+      <p>But generating code faster doesn’t automatically mean we’re building better software.</p>
+      <p>If we’re accelerating development while reducing testing, skipping proper reviews, and treating quality as an optional expense, are we really becoming more productive? Or are we just accumulating risk faster?</p>
+      <p>Maybe I’m overreacting.</p>
+      <p>Maybe it’s confirmation bias. After all, I’m a QA engineer. Finding bugs is practically a hobby since I’m doing it even in my free time.</p>
+      <p>Or maybe we’re collectively cutting corners, and the consequences just haven’t fully caught up with us yet.</p>
+      <p class="closer">I’m genuinely curious: have you also noticed more bugs in everyday software lately, <em>or am I just paying too much attention?</em></p>
+    </article>
+  </div>
+
+  <div class="end">
+    <div class="in">
+      <div class="author">
+        <img src="/resources/Alin.jpg" alt="Alin Nitu" width="56" height="56">
+        <div class="who"><b>Alin Nitu</b>Senior QA Engineer. Nine years in test automation and framework design across aviation, enterprise and fintech.</div>
+      </div>
+      <div class="links">
+        <a href="/#notes">More Field Notes <span>INDEX</span></a>
+        <a href="mailto:alin.nitu1@gmail.com">alin.nitu1@gmail.com <span>EMAIL</span></a>
+        <a href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener">LinkedIn ↗ <span>PROFILE</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="in mono"><span>© 2026 · Designed, built &amp; tested by Alin Nitu</span><span>Set in Instrument Sans, Instrument Serif &amp; IBM Plex Mono</span></div>
+</footer>
+
+</body>
+</html>
