@@ -13,6 +13,15 @@
       ]
     },
     {
+      "source": "/cv/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/resources/(.*)\\.pdf",
       "headers": [
         {
@@ -46,6 +55,13 @@
           "value": "strict-origin-when-cross-origin"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf",
+      "destination": "/cv/Alin_Nitu_Senior_QA_Engineer_CV.pdf",
+      "permanent": false
     }
   ]
 }

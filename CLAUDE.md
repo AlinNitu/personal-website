@@ -21,7 +21,8 @@ Static personal site, no build step and no framework. Vercel deploys `main` to h
 - `articles/*.html` are the Field Notes articles. `vercel.json` sets `cleanUrls`, so `articles/foo.html` is served at `/articles/foo`.
 - `assets/site.css` is the single design system: colour and type tokens on `:root`, then base, chrome, homepage sections, work page and articles. `assets/site.js` adds the header hairline, the mobile menu close and the contact form.
 - The contact form posts to Web3Forms. The key is in `site.js`, and it is public by design. Keep its validation, error and success states working.
-- `resources/` holds original images and the CV. `resources/web/` holds the resized copies the pages use. Everything in `resources/` is cached for a year, except PDFs, which revalidate on every request. To change an image, give it a new filename.
+- `cv/` holds the downloadable CV. The old `/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf` URL redirects to it via `vercel.json`. To update the CV, replace the file and keep its name, or update every link and the redirect.
+- `resources/` holds original images. `resources/web/` holds the resized copies the pages use. Everything in `resources/` is cached for a year, except PDFs, which revalidate on every request. To change an image, give it a new filename.
 - `notes/` holds article source documents.
 - `CLAUDE.md` and `.claude/` are excluded from deploys by `.vercelignore`.
 
