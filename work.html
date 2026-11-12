@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work &amp; experience | Alin Nitu</title>
+<meta name="description" content="Case studies, independent products, full experience and toolkit of Alin Nitu, Senior Quality Engineer and SDET: EUROCONTROL iNM, FF-ICE, PwC, Moonfare, Billie, Maponim and Next Job Radar.">
+<link rel="canonical" href="https://www.alinnitu.com/work">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work & experience | Alin Nitu">
+<meta property="og:description" content="Case studies, independent products, full experience and toolkit.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script defer src="/assets/site.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-in">
+    <a class="wordmark" href="/" aria-label="Alin Nitu, home"><span class="mark" aria-hidden="true">AN</span>Alin Nitu</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/work" aria-current="page">Work</a>
+      <a href="/#writing">Writing</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a class="nav-cta" href="/#contact">Contact</a>
+    </nav>
+    <details class="menu">
+      <summary>Menu</summary>
+      <div class="menu-panel">
+        <a href="/work">Work</a><a href="/#writing">Writing</a><a href="/#projects">Projects</a><a href="/#about">About</a><a href="/#contact">Contact</a><a href="/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf" download>Download CV</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Work &amp; experience</h1>
+      <p>Selected professional work in more depth, the products I’ve built independently, and the full record. Client work is described at a public-safe level: no screenshots, no proprietary detail, and illustrations are abstractions.</p>
+      <p class="toc-inline">
+        <a class="link" href="#indra-avitech">Indra Avitech</a>
+        <a class="link" href="#pwc">PwC</a>
+        <a class="link" href="#earlier">Moonfare &amp; Billie</a>
+        <a class="link" href="#maponim">Maponim</a>
+        <a class="link" href="#next-job-radar">Next Job Radar</a>
+        <a class="link" href="#experience">Experience &amp; toolkit</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Indra Avitech -->
+  <section class="section case" id="indra-avitech" aria-labelledby="indra-title">
+    <div class="container section-grid">
+      <p class="label">Indra Avitech</p>
+      <div>
+        <p class="case-meta">Aviation · Senior Test Automation Engineer · <span class="mono">2023–2026</span> · Remote</p>
+        <h2 id="indra-title">Two aviation projects. Different architectures. Automation built from scratch.</h2>
+        <p class="case-lead">At Indra Avitech, I developed functional and performance test frameworks for EUROCONTROL iNM, covering UI, REST/SOAP APIs and load testing with Python, Playwright and Locust. For FF-ICE, I designed a separate BDD automation framework for distributed messaging, validating AMQP flows and PostgreSQL persistence across multiple configurations.</p>
+
+        <h3>EUROCONTROL iNM <span class="sub">Flight-planning platform</span></h3>
+        <ul class="points">
+          <li>Led the test automation strategy for a European flight-planning platform, designing and building functional automation frameworks from scratch for UI, REST API and SOAP service testing.</li>
+          <li>Developed a separate Python and Locust performance testing framework to evaluate system behaviour under load and stress.</li>
+          <li>Automated complex flight-plan submission, processing and distribution scenarios that were impractical to validate comprehensively by hand.</li>
+          <li>Established reusable automation practices, test management processes and requirements traceability, working with QA, Development, DevOps and Product.</li>
+        </ul>
+
+        <h3>FF-ICE <span class="sub">Distributed aviation integration system</span></h3>
+        <ul class="points">
+          <li>Strategy and framework designed from scratch. Nothing inherited, every convention chosen.</li>
+          <li>Tests operate at message level: they publish to and consume from AMQP, as the real integrations do.</li>
+          <li>Outcomes are verified against persisted state in PostgreSQL, beneath the messaging layer.</li>
+          <li>One suite runs against multiple deployment configurations in Jenkins CI, on Kubernetes/OKD environments, with Allure reporting for failure investigation.</li>
+        </ul>
+
+        <ol class="flow" aria-label="FF-ICE test harness, from scenario to persisted state">
+          <li><b>Scenarios</b><span>Gherkin, BDD</span></li>
+          <li><b>Step library</b><span>Python, pytest-bdd</span></li>
+          <li><b>Message broker</b><span>AMQP publish and consume</span></li>
+          <li><b>System under test</b><span>FF-ICE integration</span></li>
+          <li><b>State checks</b><span>PostgreSQL, persisted state</span></li>
+        </ol>
+        <p class="fig-cap">Fig. 01 — Test harness and message flow. A public-safe abstraction.</p>
+
+<pre class="code" aria-label="Illustrative Gherkin scenario"><span class="k">Feature:</span> Flight plan submission
+  <span class="k">Scenario:</span> Filed plan is acknowledged
+    <span class="k">Given</span> a valid flight plan is published to the broker
+    <span class="k">When</span>  the system processes the message
+    <span class="k">Then</span>  an acknowledgement is returned
+    <span class="k">And</span>   the plan state is persisted
+<span class="c"># Illustrative, not production code</span></pre>
+
+        <dl class="facts-dl">
+          <div><dt>Role</dt><dd>Senior Test Automation Engineer</dd></div>
+          <div><dt>Scope</dt><dd>Strategy, architecture, implementation</dd></div>
+          <div><dt>Stack</dt><dd>Python, Playwright, Pytest, pytest-bdd, Locust, REST/SOAP, AMQP 1.0, PostgreSQL, Jenkins, Kubernetes/OKD, Allure</dd></div>
+        </dl>
+        <p class="related">Related reading: <a class="link" href="/articles/no-correlation-id">Testing a system that will not tell you which output belongs to your input</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PwC -->
+  <section class="section case" id="pwc" aria-labelledby="pwc-title">
+    <div class="container section-grid">
+      <p class="label">PwC</p>
+      <div>
+        <p class="case-meta">Enterprise · Senior QA Engineer · <span class="mono">2026–present</span> · Remote</p>
+        <h2 id="pwc-title">Quality engineering for an enterprise content-governance platform.</h2>
+        <p class="case-lead">A large administration and governance platform with long, stateful user workflows. My work spans TypeScript and Playwright automation, GraphQL API testing, a multi-environment automation architecture, CI/CD integration and AI-assisted testing workflows.</p>
+        <ul class="points">
+          <li>Complex administrative and governance workflows automated end to end in Playwright and TypeScript, alongside integration scenarios, health checks and selected performance validations.</li>
+          <li>GraphQL API tests run beneath the UI, so failures point at the right layer.</li>
+          <li>A multi-environment architecture: the same suite targets each environment, with Page Object Models, reusable service layers, automated test data and unattended enterprise authentication.</li>
+          <li>Automation integrated into GitHub Actions and Azure DevOps pipelines with staged execution, parallel runs and consolidated reporting. Embedding it in the team’s workflow supported a weekly release cadence, compared with the monthly cadence of other teams in the department.</li>
+          <li>AI-assisted QA workflows with coding agents, Playwright MCP and Azure DevOps integrations, used for test authoring, debugging, root-cause analysis and reporting, with human review kept in the loop.</li>
+        </ul>
+        <dl class="facts-dl">
+          <div><dt>Role</dt><dd>Senior QA Engineer</dd></div>
+          <div><dt>Stack</dt><dd>TypeScript, Playwright, GraphQL, GitHub Actions, Azure DevOps, Playwright MCP, AI coding agents</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moonfare & Billie -->
+  <section class="section case" id="earlier" aria-labelledby="earlier-title">
+    <div class="container section-grid">
+      <p class="label">Fintech</p>
+      <div>
+        <h2 id="earlier-title">Moonfare and Billie</h2>
+
+        <h3>Moonfare <span class="sub">SDET / Full-stack Software Developer · 2021–2023 · Berlin</span></h3>
+        <ul class="points">
+          <li>Part of the engineering team that built the company’s public API from scratch, working across backend development, integration testing and automated quality assurance.</li>
+          <li>Designed and developed test automation frameworks covering REST APIs, user interfaces, integration scenarios and performance testing.</li>
+          <li>Introduced automation approaches and quality practices that other internal teams went on to adopt.</li>
+          <li>Built integration and regression coverage that found cross-system defects missed by other feature teams, and contributed to backend and internal tooling, code reviews and mentoring.</li>
+        </ul>
+
+        <h3>Billie <span class="sub">QA Engineer / Test Automation · 2018–2021 · Berlin</span></h3>
+        <ul class="points">
+          <li>Designed and built an automated testing framework for the company’s ordering workflows, replacing a regression process that had relied on manual execution.</li>
+          <li>Cut regression testing time by about 50%, speeding up feedback and supporting more efficient delivery.</li>
+          <li>Reduced production defect escapes by catching ordering-flow regressions and business-rule failures earlier.</li>
+          <li>Expanded API and UI automation coverage and helped establish more structured testing processes in the team.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Maponim -->
+  <section class="section band case" id="maponim" aria-labelledby="maponim-title">
+    <div class="container section-grid">
+      <p class="label">Maponim</p>
+      <div>
+        <p class="case-meta">Independent product · Built solo · Live with a small group of trial users</p>
+        <h2 id="maponim-title">Turns a local business’s Google reviews into a one-page website its customers will recognise.</h2>
+        <h3>How it works</h3>
+        <ul class="points">
+          <li><strong>Paste a Google Maps link.</strong> Public business info is pulled in: name, hours, phone.</li>
+          <li><strong>AI reads the reviews.</strong> It extracts strengths, standout offerings and what customers come back for.</li>
+          <li><strong>Publish a one-pager.</strong> Mobile-first, editable line by line, shareable in one click.</li>
+        </ul>
+        <h3>Product notes</h3>
+        <ul class="points">
+          <li>“We don’t invent claims.” Grounding is a product rule, not a prompt: every line on a site traces back to a real review, the business profile or the owner.</li>
+          <li>Problem spotted, product conceived, designed and built solo with AI-assisted development tools.</li>
+          <li>English and Spanish today. Free, Pro and Agency plans, with custom domains on paid tiers.</li>
+        </ul>
+        <dl class="facts-dl">
+          <div><dt>Stack</dt><dd>Next.js 15 (App Router), TypeScript, React 19, Tailwind CSS 4, Supabase for database and auth, Upstash Redis for rate limiting</dd></div>
+          <div><dt>AI and data</dt><dd>Anthropic SDK behind an LLM provider abstraction, plus a Google Places API abstraction for business lookup</dd></div>
+          <div><dt>Payments and hosting</dt><dd>Stripe for billing, Vercel with Analytics and Speed Insights</dd></div>
+          <div><dt>Tooling</dt><dd>Zod for validation, Vitest for tests, ESLint, lucide-react</dd></div>
+        </dl>
+        <p class="related"><a class="link" href="https://maponim.com/" target="_blank" rel="noopener">Visit maponim.com <span class="arrow out" aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Job Radar -->
+  <section class="section band case" id="next-job-radar" aria-labelledby="njr-title" style="border-top:1px solid var(--rule)">
+    <div class="container section-grid">
+      <p class="label">Next Job Radar</p>
+      <div>
+        <p class="case-meta">Independent product · Built solo · Beta, free during beta</p>
+        <h2 id="njr-title">Fewer job listings. Only the ones you can actually take.</h2>
+        <p class="case-lead">It started with my own search for software engineering roles in Europe. Most listings failed on something basic: country of work, remote scope, language, contract. Next Job Radar checks each opening against a candidate’s real constraints first, then explains the fit with evidence from the posting.</p>
+        <h3>Principles</h3>
+        <ul class="points">
+          <li><strong>Eligibility first.</strong> Hard rules come before ranking: each check returns pass, fail or unknown before any fit is assessed.</li>
+          <li><strong>Fit, explained.</strong> Explanations, not scores. Feedback improves ranking without rewriting a candidate’s hard rules.</li>
+          <li><strong>Honesty.</strong> Unknown stays unknown. Silence in a posting never becomes a yes.</li>
+          <li>Delivered as a daily email digest and a small dashboard. Users apply on the employer’s original listing.</li>
+        </ul>
+        <div class="check" role="group" aria-label="Example eligibility check">
+          <div class="ttl">Example only, not a real listing<b>Example Labs · Senior QA Automation Engineer</b></div>
+          <table>
+            <tbody>
+              <tr><td>Country</td><td>“Remote from RO, PL, PT”</td><td class="pass">PASS</td></tr>
+              <tr><td>Salary basis</td><td>“EUR 75–95k gross / year”</td><td class="pass">PASS</td></tr>
+              <tr><td>Contract</td><td>not stated in posting</td><td class="unk">UNKNOWN</td></tr>
+              <tr><td>Language</td><td>“Fluent German required”</td><td class="fail">FAIL</td></tr>
+            </tbody>
+          </table>
+          <p class="foot">Each verdict quotes the posting text it came from.</p>
+        </div>
+        <dl class="facts-dl">
+          <div><dt>Stack</dt><dd>TypeScript end to end on Node 22 in an npm workspaces monorepo. Next.js 16, React 19, Tailwind CSS 4, shadcn/ui. PostgreSQL 18 with Drizzle ORM; magic-link auth via better-auth.</dd></div>
+          <div><dt>Background work</dt><dd>A Node worker on pg-boss, a Postgres-backed job queue, polls sources, runs matching and sends digests and alerts.</dd></div>
+          <div><dt>AI</dt><dd>Anthropic SDK with structured outputs and Zod schemas. Haiku 5.5 for extraction and fit, Opus 5.5 for onboarding drafts. Prompt caching, a per-call cost ledger and a daily budget cap.</dd></div>
+          <div><dt>Sources</dt><dd>Public feeds from Greenhouse, Lever, Ashby, SmartRecruiters, Recruitee, Workable and Personio, careers pages with JobPosting markup, and four aggregators. No LinkedIn or Indeed.</dd></div>
+          <div><dt>Ops</dt><dd>Railway with two Docker images and managed Postgres. Resend for email. CI with Vitest, Playwright and npm audit; Dependabot; nightly backups; pino logs and operator pages.</dd></div>
+        </dl>
+        <p class="related"><a class="link" href="https://jobradarweb-production.up.railway.app/" target="_blank" rel="noopener">Try the beta <span class="arrow out" aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & toolkit -->
+  <section class="section" id="experience" aria-labelledby="exp-title">
+    <div class="container section-grid">
+      <p class="label">Experience</p>
+      <div>
+        <div class="section-head">
+          <h2 id="exp-title">Experience &amp; toolkit</h2>
+          <p>The full record is in my CV. <a class="link" href="/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf" download="Alin_Nitu_CV_Senior_QA_Engineer.pdf">Download it as a PDF <span class="arrow down" aria-hidden="true">↓</span></a></p>
+        </div>
+        <div class="timeline">
+          <div><span class="y">2026–present</span><b>PwC</b><span>Senior QA Engineer / AI Agentic QA Engineer<em>Enterprise · Content governance</em></span></div>
+          <div><span class="y">2023–2026</span><b>Indra Avitech</b><span>Senior Test Automation Engineer<em>Aviation · EUROCONTROL iNM, FF-ICE</em></span></div>
+          <div><span class="y">2021–2023</span><b>Moonfare</b><span>SDET / Full-stack Software Developer<em>Fintech</em></span></div>
+          <div><span class="y">2018–2021</span><b>Billie</b><span>QA Engineer / Test Automation<em>Fintech</em></span></div>
+          <div><span class="y">2017–2018</span><b>Ubisoft</b><span>QA Engineer<em>Gaming</em></span></div>
+          <div><span class="y">2014–2017</span><b>Teamnet / Nutre Group / CenterPoint Energy</b><span>GIS Specialist<em>Geospatial · Where it started</em></span></div>
+        </div>
+        <div class="toolkit">
+          <div><h3>Languages &amp; tools</h3><ul><li>Python</li><li>TypeScript</li><li>Playwright</li><li>Pytest</li></ul></div>
+          <div><h3>Practice</h3><ul><li>Framework architecture</li><li>Test strategy</li><li>Page Object Model</li><li>BDD</li></ul></div>
+          <div><h3>Testing scope</h3><ul><li>API &amp; integration</li><li>End-to-end</li><li>Distributed systems</li><li>Messaging (AMQP)</li></ul></div>
+          <div><h3>Delivery &amp; AI</h3><ul><li>GitHub Actions, Azure DevOps, Jenkins</li><li>AI-assisted engineering</li><li>Coding agents</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" aria-labelledby="work-contact">
+    <div class="container section-grid">
+      <p class="label">Contact</p>
+      <div>
+        <h2 id="work-contact">Have a project or a role in mind?</h2>
+        <p class="intro">I’m open to B2B contracts, consulting and the right engineering role.</p>
+        <a class="email" href="mailto:alin.nitu1@gmail.com">alin.nitu1@gmail.com</a>
+        <p class="contact-links">
+          <a class="link" href="/#contact">Contact form <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="link" href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener">LinkedIn <span class="arrow out" aria-hidden="true">↗</span></a>
+          <a class="link" href="https://github.com/AlinNitu" target="_blank" rel="noopener">GitHub <span class="arrow out" aria-hidden="true">↗</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-in">
+    <span>© 2026 Alin Nitu</span>
+    <nav aria-label="Footer">
+      <a href="mailto:alin.nitu1@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/AlinNitu" target="_blank" rel="noopener">GitHub</a>
+      <a href="/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf" download>CV</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

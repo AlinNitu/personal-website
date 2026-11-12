@@ -8,112 +8,54 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Testing a system that will not tell you which output belongs to your input.">
 <meta property="og:description" content="The response has no correlation ID. A field note on message-driven testing, competing consumers, and what silence proves.">
-<meta property="og:image" content="/resources/articles/one-receiver-per-queue.png">
+<meta property="og:image" content="/resources/articles/one-receiver-per-queue-light.png">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0C0D0F;--ink:#F0EEE7;--body:#C9C7C0;--muted:#8D9299;--rule:#26282C;--rule2:#2E3034;--accent:#FF704B;--paper:#F0EEE7;--code:#0F1012}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--accent);color:var(--bg)}
-.mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-
-header.site{position:sticky;top:0;z-index:50;background:rgba(12,13,15,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1E2023}
-header.site .in{max-width:1440px;margin:0 auto;padding:14px clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em}
-.brand .mark{width:26px;height:26px;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500}
-.brand:hover{color:var(--accent)}
-.back{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.back:hover{color:var(--accent)}
-
-.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
-.head{padding:clamp(56px,8vw,112px) 0 clamp(40px,5vw,64px);border-bottom:1px solid var(--rule)}
-.kicker{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
-.kicker .no{color:var(--accent)}
-h1{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(38px,5.4vw,84px);line-height:1;letter-spacing:-.025em;text-wrap:balance;max-width:20ch}
-h1 em{font-style:italic;color:var(--accent)}
-.dek{margin:28px 0 0;font-size:clamp(19px,1.6vw,24px);line-height:1.45;color:var(--body);max-width:56ch;text-wrap:pretty}
-.meta{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:36px}
-.meta span b{color:var(--ink);font-weight:500}
-.ai-note{margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;letter-spacing:.02em;color:var(--muted);max-width:60ch}
-
-.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(32px,5vw,80px);padding:clamp(40px,5vw,64px) 0 clamp(80px,10vw,140px)}
-@media (min-width:1000px){.layout{grid-template-columns:220px minmax(0,1fr)}}
-aside.toc{position:sticky;top:84px;align-self:start;display:none}
-@media (min-width:1000px){aside.toc{display:block}}
-aside.toc .mono{margin-bottom:14px}
-aside.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;border-left:1px solid var(--rule);padding-left:16px}
-aside.toc a{font-size:13.5px;color:var(--muted);line-height:1.4;display:block}
-aside.toc a:hover{color:var(--ink)}
-
-article{max-width:68ch;font-size:18px;line-height:1.65;color:var(--body)}
-article p{margin:0 0 1.35em;text-wrap:pretty}
-article h2{margin:2.4em 0 .7em;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,2.6vw,38px);line-height:1.1;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
-article h2:first-child{margin-top:0}
-article h3{margin:2em 0 .6em;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
-article h3 .n{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:12px;color:var(--accent);margin-right:12px}
-article strong{color:var(--ink);font-weight:600}
-article a{color:var(--ink);border-bottom:1px solid var(--rule2)}
-article a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-
-pre{margin:1.6em 0 1.8em;padding:18px 20px;background:var(--code);border:1px solid var(--rule2);border-left:2px solid var(--accent);overflow-x:auto;font-family:'IBM Plex Mono',monospace;font-size:13.5px;line-height:1.7;color:var(--ink)}
-pre code{font:inherit}
-pre .c{color:var(--muted)}
-pre .k{color:var(--accent)}
-
-figure{margin:2.2em 0}
-figure .panel{background:var(--paper);padding:clamp(14px,2vw,24px);border:1px solid var(--rule)}
-figure img{display:block;width:100%;height:auto}
-figcaption{margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;color:var(--muted)}
-
-.closer{margin:3em 0 0;padding-top:2em;border-top:1px solid var(--rule);font-family:'Instrument Serif',serif;font-size:clamp(24px,2.2vw,32px);line-height:1.25;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty}
-.closer em{font-style:italic;color:var(--accent)}
-.note{margin-top:2.5em;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;color:var(--muted)}
-
-.end{border-top:1px solid var(--rule);padding:clamp(40px,5vw,64px) 0}
-.end .in{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:32px 48px;align-items:start}
-.end .author{display:flex;gap:16px;align-items:center}
-.end .author img{width:56px;height:56px;object-fit:cover;border:1px solid var(--rule2)}
-.end .author .who{font-size:15px;line-height:1.45;color:var(--body)}
-.end .author .who b{display:block;color:var(--ink);font-weight:600}
-.end .links{display:flex;flex-direction:column}
-.end .links a{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:16px;font-weight:500}
-.end .links a:first-child{border-top:1px solid var(--rule)}
-.end .links a:hover{color:var(--accent)}
-.end .links a span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);align-self:center}
-
-footer.site{border-top:1px solid var(--rule)}
-footer.site .in{max-width:1440px;margin:0 auto;padding:28px clamp(20px,4vw,56px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<meta name="theme-color" content="#F7F6F2">
+<script defer src="/assets/site.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
-<header class="site">
-  <div class="in">
-    <a class="brand" href="/"><span class="mark">AN</span>Alin Nitu</a>
-    <a class="back" href="/#notes">← Field Notes</a>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-in">
+    <a class="wordmark" href="/" aria-label="Alin Nitu, home"><span class="mark" aria-hidden="true">AN</span>Alin Nitu</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/work">Work</a>
+      <a href="/#writing" aria-current="page">Writing</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a class="nav-cta" href="/#contact">Contact</a>
+    </nav>
+    <details class="menu">
+      <summary>Menu</summary>
+      <div class="menu-panel">
+        <a href="/work">Work</a><a href="/#writing">Writing</a><a href="/#projects">Projects</a><a href="/#about">About</a><a href="/#contact">Contact</a><a href="/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf" download>Download CV</a>
+      </div>
+    </details>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="head">
-    <div class="kicker mono"><span class="no">N° 01</span><span>Quality engineering</span><span>·</span><span>Message-driven testing</span></div>
+<main id="main">
+  <header class="article-head"><div class="container">
+    <a class="back" href="/#writing"><span aria-hidden="true">←</span> Field Notes</a>
+    <div class="kicker"><span class="no">N° 01</span><span>Quality engineering</span><span>·</span><span>Message-driven testing</span></div>
     <h1>Testing a system that will not tell you which output belongs to <em>your input.</em></h1>
     <p class="dek">The response has no correlation ID. A field note on a Python test framework for an AMQP service, and the broker investigation that explained why tests passed alone but failed together.</p>
-    <div class="meta mono"><span>By <b>Alin Nitu</b></span><span>Published <b>17 Oct 2026</b></span><span>Reading time <b>10 min</b></span></div>
+    <div class="meta"><span>By <b>Alin Nitu</b></span><span>Published <b>17 Oct 2026</b></span><span>Reading time <b>10 min</b></span></div>
     <p class="ai-note">Written with the help of AI, under my close supervision and with my own revisions.</p>
-  </div>
+  </div></header>
 
-  <div class="layout">
-    <aside class="toc">
-      <div class="mono">Contents</div>
+  <div class="container article-layout">
+    <aside class="toc" aria-label="Contents">
+      <div class="ttl">Contents</div>
       <ol>
         <li><a href="#passed-alone">When the tests passed alone, but failed together</a></li>
         <li><a href="#three-contracts">Three observable contracts</a></li>
@@ -126,7 +68,7 @@ footer.site .in{max-width:1440px;margin:0 auto;padding:28px clamp(20px,4vw,56px)
       </ol>
     </aside>
 
-    <article>
+    <article class="prose-article">
       <h2 id="passed-alone">When the tests passed alone, but failed together</h2>
       <p>During a full sequential CI run, a familiar failure kept appearing: a test sent a message, waited for the expected output, and eventually timed out. Some of the same scenarios passed when I executed them individually. The assertions had not changed. Something about the full run was changing what the tests could observe.</p>
       <p>I was working on a Python test automation framework for a backend integration service. The service has no user interface. It consumes domain events from a message broker, applies business rules, persists state in PostgreSQL, and publishes transformed output to another queue. Other flows accept requests and produce acknowledgements, rejections, or data replies.</p>
@@ -159,7 +101,7 @@ result = inbox.wait_for_message_after(position, timeout=TIMEOUT)</code></pre>
       <p>The fix was to make receiver ownership explicit. Within a test session, an outbound queue gets one receiving owner. The first client that needs that queue opens the receiver; clients created later for the same outbound queue can still send to their own inbound destinations, but they do not open another receiver. Instead, they read from the owner’s shared inbox.</p>
       <p>The message store is reset between sequential scenarios so that one scenario does not accidentally assert on an earlier one’s output. The key change is that the framework no longer competes with itself for deliveries.</p>
       <figure>
-        <div class="panel"><img src="/resources/articles/one-receiver-per-queue.png" alt="Two diagrams. Before: a service publishes to an outbound queue consumed by two clients that each own a receiver, so delivery can go to either one while the test observes only one of them. After: one client owns the single receiver and a shared message store; the second client is sender-only and reads the first client's inbox." width="1800" height="825" loading="lazy"></div>
+        <div class="panel"><img src="/resources/articles/one-receiver-per-queue-light.png" alt="Two diagrams. Before: a service publishes to an outbound queue consumed by two clients that each own a receiver, so delivery can go to either one while the test observes only one of them. After: one client owns the single receiver and a shared message store; the second client is sender-only and reads the first client's inbox." width="1800" height="825" loading="lazy"></div>
         <figcaption>Fig. 01 — Competing consumers versus one receiving owner. The illustration simplifies the connection model; delivery is not guaranteed to alternate evenly between consumers.</figcaption>
       </figure>
       <p>Nothing about the system under test needed to change to address this class of timeouts. The framework had been listening in the wrong way. Once the receiving topology reflected the test’s assumptions, the intermittent failures caused by competing in-session receivers stopped.</p>
@@ -195,23 +137,31 @@ result = inbox.wait_for_message_after(position, timeout=TIMEOUT)</code></pre>
     </article>
   </div>
 
-  <div class="end">
-    <div class="in">
+  <section class="article-end">
+    <div class="container in">
       <div class="author">
-        <img src="/resources/Alin.jpg" alt="Alin Nitu" width="56" height="56">
-        <div class="who"><b>Alin Nitu</b>Senior QA Engineer. Nine years in test automation and framework design across aviation, enterprise and fintech.</div>
+        <img src="/resources/web/alin-160.jpg" alt="Alin Nitu" width="64" height="64">
+        <p><b>Alin Nitu</b>Independent Senior Quality Engineer. 9+ years in test automation and framework design across aviation, enterprise and fintech.</p>
       </div>
-      <div class="links">
-        <a href="/#notes">More Field Notes <span>INDEX</span></a>
-        <a href="mailto:alin.nitu1@gmail.com">alin.nitu1@gmail.com <span>EMAIL</span></a>
-        <a href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener">LinkedIn ↗ <span>PROFILE</span></a>
-      </div>
+      <nav class="end-links" aria-label="More">
+        <a href="/#writing">More Field Notes <span>→</span></a>
+        <a href="/#contact">Get in touch <span>→</span></a>
+        <a href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+      </nav>
     </div>
-  </div>
+  </section>
 </main>
 
-<footer class="site">
-  <div class="in mono"><span>© 2026 · Designed, built &amp; tested by Alin Nitu</span><span>Set in Instrument Sans, Instrument Serif &amp; IBM Plex Mono</span></div>
+<footer class="site-footer light">
+  <div class="container footer-in">
+    <span>© 2026 Alin Nitu</span>
+    <nav aria-label="Footer">
+      <a href="mailto:alin.nitu1@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/alinnitu/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/AlinNitu" target="_blank" rel="noopener">GitHub</a>
+      <a href="/resources/Alin_Nitu_CV_Senior_QA_Engineer.pdf" download>CV</a>
+    </nav>
+  </div>
 </footer>
 
 </body>
